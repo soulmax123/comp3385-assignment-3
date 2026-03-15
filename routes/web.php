@@ -16,17 +16,18 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get('/about', function () {
     return view('about');
 });
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('/dashboard');
-// Create additional Routes below
 
-Route::get('/login') ->name('login') ->uses('App\Http\Controllers\AuthController@create');   
-Route::post('/login') ->name('login.store') ->uses('App\Http\Controllers\AuthController@store');
+// Create additional routes below
+Route::get('/login')->name('login')->uses('App\Http\Controllers\AuthController@create');
+Route::post('/login')->name('login.store')->uses('App\Http\Controllers\AuthController@store');
+Route::post('/logout')->name('logout')->uses('App\Http\Controllers\AuthController@logout');
 
-Route::get('/community-events/add') ->name('community-events.create') ->uses('App\Http\Controllers\CommunityEventController@create');
-Route::post('/community-events') ->name('community-events.store') ->uses('App\Http\Controllers\CommunityEventController@store');
+Route::get('/community-events/add')->name('community-events.create')->uses('App\Http\Controllers\CommunityEventController@create');
+Route::post('/community-events')->name('community-events.store')->uses('App\Http\Controllers\CommunityEventController@store');
