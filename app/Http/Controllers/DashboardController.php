@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CommunityEvent;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -9,6 +10,8 @@ class DashboardController extends Controller
 {
     public function index(): View
     {
-        return view('dashboard');
+        $events = CommunityEvent::all();
+
+        return view('dashboard', compact('events'));
     }
 }
