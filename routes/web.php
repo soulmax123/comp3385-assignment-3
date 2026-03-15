@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,6 +22,9 @@ Route::get('/about', function () {
     return view('about');
 });
 
-Route::get('/dashboard', [DashboardController::class, 'index']);
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 
 // Create additional Routes below
+
+Route::get('/login') ->name('login') ->uses('App\Http\Controllers\AuthController@create');   
+Route::post('/login') ->name('login.store') ->uses('App\Http\Controllers\AuthController@store');
