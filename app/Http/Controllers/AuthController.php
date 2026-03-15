@@ -29,7 +29,4 @@ class AuthController extends Controller
             'email' => 'Invalid credentials. Check the email address and password entered',
         ])->onlyInput('email');
     }
-
-
-
-    }
+}
